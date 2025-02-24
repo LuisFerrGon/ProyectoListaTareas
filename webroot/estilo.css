@@ -1,0 +1,17 @@
+:root{
+    --blanco: #fff;
+    --verdeClaro: #5efc8d;
+    --celeste: #8ef9f3;
+    --indigoClaro: #93bedf;
+    --indigo: #8377d1;
+    --ciruela: #6d5a72;
+    --negro: #000;
+}
+*{
+    margin: 5px;
+    padding: 0px;
+}
+a:link, a:visited, a:hover, a:active{
+    color: var(--indigo);
+    text-decoration: none;
+}
