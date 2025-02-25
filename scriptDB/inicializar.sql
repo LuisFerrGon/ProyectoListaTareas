@@ -5,17 +5,17 @@
  */
 INSERT INTO ListaTareas.Usuarios
 VALUES
-    ('abc', SHA2('abcpaso'), 'ABC'),
-    ('def', SHA2('defpaso'), 'DEF'),
-    ('ghi', SHA2('ghipaso'), 'GHI')
+    ('abcd', SHA2('abcdpaso1'), 'ABCD'),
+    ('efgh', SHA2('efghpaso1'), 'EFGH'),
+    ('ijkl', SHA2('ijklpaso1'), 'IJKL')
 ;
 INSERT INTO ListaTareas.Tareas
     (codigoUsuario, descripcion)
 VALUES
-    ('abc', 'abc1'),
-    ('abc', 'abc2'),
-    ('def', 'def1'),
-    ('def', 'def2'),
-    ('ghi', 'ghi1'),
-    ('ghi', 'ghi2')
+    ('abcd', 'abcd1'),
+    ('abcd', 'abcd2'),
+    ('efgh', 'efgh1'),
+    ('efgh', 'efgh2'),
+    ('ijkl', 'ijkl1'),
+    ('ijkl', 'ijkl2')
 ;

@@ -6,13 +6,11 @@
      */
 ?>
 <header>
-    <div></div>
-    <h1>Lista de tareas</h1>
     <div>
         <form action="post">
-            <input type="submit" value="Iniciar sesión" name="login">
+            <input type="submit" value="Volver" name="volver">
         </form>
     </div>
+    <h1>WIP</h1>
+    <div></div>
 </header>
-<main>
-</main>

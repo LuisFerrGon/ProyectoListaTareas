@@ -23,7 +23,7 @@
         private $nombre;
         public function __construct($codigo, $contrasena, $nombre){
             $this->codigo=$codigo;
-            $this->contrasena=$contrasena
+            $this->contrasena=$contrasena;
             $this->nombre=$nombre;
         }
         public function getCodigo(){
