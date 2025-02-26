@@ -6,7 +6,7 @@
      * Clase para crear conexiones con una base de datos
      * 
      * @author Luis Ferreras González
-     * @version 1.0.0 Fecha última modificación: 25/02/2025
+     * @version 1.0.0 Fecha última modificación: 26/02/2025
      * @since 1.0.0
      */
     class DBPDO{
@@ -23,7 +23,7 @@
          * @return object|PDOException Devuelve un objeto si no hay error; sino
          *                              un PDOException.
          * @author Luis Ferreras González
-         * @version 1.0.0 Fecha última modificación: 25/02/2025
+         * @version 1.0.0 Fecha última modificación: 26/02/2025
          * @since 1.0.0
          */
         public static function ejecutarConsulta($sentenciaSQL, $aParametros=null){
@@ -36,7 +36,7 @@
             }catch(PDOException $ex){
                 $_SESSION['paginaAnterior']=$_SESSION['paginaEnCurso'];
                 $_SESSION['paginaEnCurso']='error';
-                $_SESSION['error']=new error(
+                $_SESSION['error']=new ErrorApp(
                     $ex->getCode(),
                     $ex->getMessage(),
                     $ex->getFile(),

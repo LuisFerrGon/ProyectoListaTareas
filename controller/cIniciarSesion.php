@@ -1,7 +1,7 @@
 <?php
     /**
      * @author Luis Ferreras González
-     * @version 1.0.0 Fecha última modificación: 25/02/2025
+     * @version 1.0.0 Fecha última modificación: 26/02/2025
      * @since 1.0.0
      */
     require_once 'core/lValidacionFormulario.php';
@@ -25,12 +25,12 @@
     }
     if(isset($_REQUEST['login'])){
         $aErrores['codigo']=validacionFormularios::comprobarAlfabetico($_REQUEST['codigo'], MAX_CODIGO, MIN_CODIGO, OBLIGATORIO);
-        $aErrores['conntrasena']=validacionFormularios::validarPassword($_REQUEST['contrasena'], MAX_CONTRASENA, MIN_CONTRASENA, MEDIO, OBLIGATORIO);
-        if($aErrores['codigo']==null && $aErrores['conntrasena']=null){
+        $aErrores['contrasena']=validacionFormularios::validarPassword($_REQUEST['contrasena'], MAX_CONTRASENA, MIN_CONTRASENA, MEDIO, OBLIGATORIO);
+        if($aErrores['codigo']==null && $aErrores['contrasena']==null){
             $oUsuarioActivo=UsuarioPDO::buscarUsuario($_REQUEST['codigo'], $_REQUEST['contrasena']);
             if($oUsuarioActivo instanceof Usuario){
                 $_SESSION['usuarioActivo']=$oUsuarioActivo;
-                $_SESSION['paginaAnterior']='login';
+                $_SESSION['paginaAnterior']='iniciarSesion';
                 $_SESSION['paginaEnCurso']='inicioPrivado';
                 header('Location: index.php');
                 exit();

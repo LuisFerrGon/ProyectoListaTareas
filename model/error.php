@@ -5,10 +5,10 @@
      * Clase para objetos error
      * 
      * @author Luis Ferreras González
-     * @version 1.0.0 Fecha última modificación: 25/02/2025
+     * @version 1.0.0 Fecha última modificación: 26/02/2025
      * @since 1.0.0
      */
-    class error{
+    class ErrorApp{
         /**
          * @var string $codError Código del error
          */

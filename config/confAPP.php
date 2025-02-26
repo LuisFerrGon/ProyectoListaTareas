@@ -1,7 +1,7 @@
 <?php
     /**
      * @author Luis Ferreras González
-     * @version 1.0.0 Fecha última modificación: 24/02/2025
+     * @version 1.0.0 Fecha última modificación: 26/02/2025
      * @since 1.0.0
      */
     require_once 'model/tarea.php';
@@ -16,9 +16,12 @@
         'nuevaTarea'=>'controller/cNuevaTarea.php',
         'mostrarTarea'=>'controller/cMostrarTarea.php',
         'editarTarea'=>'controller/cEditarTarea.php',
-        'borrarTarea'=>'controller/cBorrarTarea.php'
+        'borrarTarea'=>'controller/cBorrarTarea.php',
+        'error'=>'controller/cError.php',
+        'wip'=>'controller/cWIP.php'
     ];
     $aView=[
+        'layout'=>'view/vLayout.php',
         'inicioPublico'=>'view/vInicioPublico.php',
         'iniciarSesion'=>'view/vIniciarSesion.php',
         'registro'=>'view/vRegistro.php',
@@ -26,6 +29,8 @@
         'nuevaTarea'=>'view/vNuevaTarea.php',
         'mostrarTarea'=>'view/vMostrarTarea.php',
         'editarTarea'=>'view/vEditarTarea.php',
-        'borrarTarea'=>'view/vBorrarTarea.php'
+        'borrarTarea'=>'view/vBorrarTarea.php',
+        'error'=>'view/vError.php',
+        'wip'=>'view/vWIP.php'
     ];
 ?>

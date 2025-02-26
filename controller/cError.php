@@ -5,8 +5,8 @@
      * @since 1.0.0
      */
     if(isset($_REQUEST['volver'])){
-        $_SESSION['paginaEnCurso']=$_SESSION['paginaAnterior'];
-        $_SESSION['paginaAnterior']='wip';
+        $_SESSION['paginaEnCurso']=$_SESSION['paginaAnterior']/*'iniciarSesion'*/;
+        $_SESSION['paginaAnterior']='error';
         header('Location: index.php');
         exit();
     }

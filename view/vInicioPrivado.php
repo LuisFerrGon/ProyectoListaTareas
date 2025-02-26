@@ -11,7 +11,7 @@
             <input type="submit" value="Cerrar sesión" name="cerrar">
         </form>
     </div>
-    <h1>Lista de tareas</h1>
+    <h1>Lista de tareas de <?php echo $oUsuarioActivo->getNombre();?></h1>
     <div></div>
 </header>
 <main>
@@ -23,7 +23,7 @@
                         <label for="descripcionTarea">Descripción:</label>
                     </td>
                     <td>
-                        <input type="text" id="descripcionTarea" maxlength="255" value="<?php echo $_SESSION['criterioBusqueda']['descripcion'];?>">
+                        <input type="text" id="descripcionTarea" maxlength="255" value="<?php echo $_SESSION['criterioBusqueda']['descripcionTarea'];?>">
                     </td>
                     <td>
                         <select name="estado" id="estado">
@@ -64,8 +64,8 @@
                             $fechaCreacion=$oTarea->getFechaCreacion();
                             $fechaCompletado=$oTarea->getFechaCompletado();
                             $estado=($fechaCompletado!=null)
-                                ?"&#9744;"
-                                :"&#9745;"
+                                ?"&#9744;"#Unchecked box
+                                :"&#9745;"#Checked box
                             ;
                             echo "<tr class='".$estado."'>"
                                 . "<td>".$descripcion."</td>"

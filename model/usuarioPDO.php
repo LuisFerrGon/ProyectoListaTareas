@@ -12,13 +12,13 @@
         public static function buscarUsuario($codigoUsuario, $contrasenaUsuario){
             $consulta=<<<SQL
                 SELECT * FROM Usuarios
-                WHERE codigo='{$codigoUsuario}'
-                AND contrasena=SHA2('{$codigoUsuario}{$contrasenaUsuario}', 256)
+                WHERE codigo='$codigoUsuario'
+                AND contrasena=SHA2('$codigoUsuario$contrasenaUsuario', 256)
                 ;
             SQL;
             $resultado=DBPDO::ejecutarConsulta($consulta);
-            $resultado->fetchObject();
-            if($resultado!=null){
+            $resultado=$resultado->fetchObject();
+            if($resultado!=null || $resultado instanceof PDOException){
                 return new Usuario(
                     $resultado->codigo,
                     $resultado->contrasena,

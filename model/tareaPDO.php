@@ -5,7 +5,7 @@
      * Clase para utilizar objetos Tarea
      * 
      * @author Luis Ferreras González
-     * @version 1.0.0 Fecha última modificación: 25/02/2025
+     * @version 1.0.0 Fecha última modificación: 26/02/2025
      * @since 1.0.0
      */
     class TareaPDO{
@@ -18,14 +18,14 @@
          * @param array $aCriteriosBusqueda Array con las condiciones de busqueda
          * @return array Contiene todas las tareas que se adhieren a las condiciones
          * @author Luis Ferreras González
-         * @version 1.0.0 Fecha última modificación: 25/02/2025
+         * @version 1.0.0 Fecha última modificación: 26/02/2025
          * @since 1.0.0
          */
         public static function buscarTarea(string $codigoUsuario, array $aCriteriosBusqueda){
             $aTareas=[];
             $consulta=<<<SQL
                 SELECT * FROM Tareas
-                WHERE decripcion LIKE '{$aCriteriosBusqueda['descripcion']}'
+                WHERE descripcion LIKE '{$aCriteriosBusqueda['descripcionTarea']}'
                 AND codigoUsuario='{$codigoUsuario}'
             SQL;
             switch($aCriteriosBusqueda['estado']){
@@ -102,7 +102,7 @@
          * @since 1.0.0
          */
         public static function cambiarEstado(string $codigoUsuario, int $codigoTarea){
-            if((TareaPDO::buscarTareaPorCodigo($codUsuario, $codTarea))->fechaCompletado==null){
+            if((TareaPDO::buscarTareaPorCodigo($codigoUsuario, $codigoTarea))->fechaCompletado==null){
                 $consulta=<<<SQL
                     UPDATE Tareas SET
                         fechaCompletado=CURRENT_TIMESTAMP()
