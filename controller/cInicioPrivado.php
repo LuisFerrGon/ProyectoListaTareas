@@ -1,7 +1,7 @@
 <?php
     /**
      * @author Luis Ferreras González
-     * @version 1.0.0 Fecha última modificación: 26/02/2025
+     * @version 1.0.0 Fecha última modificación: 27/02/2025
      * @since 1.0.0
      */
     require_once 'model/tarea.php';
@@ -11,39 +11,49 @@
         $_SESSION['paginaAnterior']='inicioPrivado';
         $_SESSION['paginaEnCurso']='inicioPublico';
         header('Location: index.php');
+        session_destroy();
         exit();
     }
-    if($resultado=preg_grep("/cambiarEstado\(\d+\)/", array_keys($_REQUEST))){
+    if($resultado=preg_grep("/cambiar/", array_keys($_REQUEST))){
         $resultado=array_values($resultado)[0];
-        $codigo=substr($resultado[0], 14, strlen($resultado[0])-15);
+        $codigo=substr($resultado, 8, strlen($resultado)-9);
         TareaPDO::cambiarEstado($oUsuarioActivo->getCodigo(), intval($codigo));
         header('Location: index.php');
         exit();
     }
-    if($resultado=preg_grep("/mostrar\(\d+\)/", array_keys($_REQUEST))){
+    if($resultado=preg_grep("/mostrar/", array_keys($_REQUEST))){
         $resultado=array_values($resultado)[0];
-        $_SESSION['tareaEnCurso']=substr($resultado[0], 8, strlen($resultado[0])-9);
+        $codigo=substr($resultado, 8, strlen($resultado)-9);
+        $_SESSION['tareaEnCurso']= TareaPDO::buscarTareaPorCodigo($oUsuarioActivo->getCodigo(), intval($codigo));
         $_SESSION['paginaEnCurso']='mostrarTarea';
         $_SESSION['paginaAnterior']='inicioPrivado';
         header('Location: index.php');
         exit();
     }
-    if($resultado=preg_grep("/cambiar\(\d+\)/", array_keys($_REQUEST))){
+    if($resultado=preg_grep("/editar/", array_keys($_REQUEST))){
         $resultado=array_values($resultado)[0];
-        $_SESSION['tareaEnCurso']=substr($resultado[0], 8, strlen($resultado[0])-9);
-        $_SESSION['paginaEnCurso']='cambiarTarea';
+        $codigo=substr($resultado, 7, strlen($resultado)-8);
+        $_SESSION['tareaEnCurso']= TareaPDO::buscarTareaPorCodigo($oUsuarioActivo->getCodigo(), intval($codigo));
+        $_SESSION['paginaEnCurso']='editarTarea';
         $_SESSION['paginaAnterior']='inicioPrivado';
         header('Location: index.php');
         exit();
     }
-    if($resultado=preg_grep("/borrar\(\d+\)/", array_keys($_REQUEST))){
+    if($resultado=preg_grep("/borrar/", array_keys($_REQUEST))){
         $resultado=array_values($resultado)[0];
-        $_SESSION['tareaEnCurso']=substr($resultado[0], 7, strlen($resultado[0])-8);
+        $codigo=substr($resultado, 7, strlen($resultado)-8);
+        $_SESSION['tareaEnCurso']= TareaPDO::buscarTareaPorCodigo($oUsuarioActivo->getCodigo(), intval($codigo));
         $_SESSION['paginaEnCurso']='borrarTarea';
         $_SESSION['paginaAnterior']='inicioPrivado';
         header('Location: index.php');
         exit();
-    }if(isset($_REQUEST['descripcionTarea'])){
+    }
+    if(isset($_REQUEST['crear']) && $_REQUEST['nuevaTarea']!=null){
+        TareaPDO::crearTarea($oUsuarioActivo->getCodigo(), $_REQUEST['nuevaTarea']);
+        header('Location: index.php');
+        exit();
+    }
+    if(isset($_REQUEST['descripcionTarea'])){
         $_SESSION['criterioBusqueda']['descripcionTarea']=$_REQUEST['descripcionTarea'];
     }
     if(!isset($_SESSION['criterioBusqueda']['descripcionTarea'])){

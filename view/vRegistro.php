@@ -1,7 +1,7 @@
 <?php
     /**
      * @author Luis Ferreras González
-     * @version 1.0.0 Fecha última modificación: 25/02/2025
+     * @version 1.0.0 Fecha última modificación: 27/02/2025
      * @since 1.0.0
      */
 ?>
@@ -15,8 +15,8 @@
     <div></div>
 </header>
 <main>
-    <div id="formularioLogin">
-        <h2>Iniciar sesión</h2>
+    <div id="formularioRegistro" class="formulario">
+        <h2>Registro</h2>
         <form action="<?php echo $_SERVER['PHP_SELF']?>" method="post">
             <table>
                 <tbody>
@@ -27,6 +27,11 @@
                         <td>
                             <input type="text" id="codigo" name="codigo" class="obligatorio">
                         </td>
+                        <?php
+                            if(isset($_REQUEST['registro']) && $aErrores['codigo']!=null){
+                                echo "<td class='error'>".$aErrores['codigo']."</td>";
+                            }
+                        ?>
                     </tr>
                     <tr>
                         <td>
@@ -35,12 +40,31 @@
                         <td>
                             <input type="password" id="contrasena" name="contrasena" class="obligatorio">
                         </td>
+                        <?php
+                            if(isset($_REQUEST['registro']) && $aErrores['contrasena']!=null){
+                                echo "<td class='error'>".$aErrores['contrasena']."</td>";
+
+                            }
+                        ?>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="nombre">Nombre:</label>
+                        </td>
+                        <td>
+                            <input type="text" id="nombre" name="nombre" class="obligatorio">
+                        </td>
+                        <?php
+                            if(isset($_REQUEST['registro']) && $aErrores['nombre']!=null){
+                                echo "<td class='error'>".$aErrores['nombre']."</td>";
+                            }
+                        ?>
                     </tr>
                 </tbody>
                 <tfoot>
                     <tr>
                         <td>
-                            <input type="submit" value="Iniciar sesión" id="login" name="login">
+                            <input type="submit" value="Registrarse" id="regstro" name="registro">
                         </td>
                     </tr>
                 </tfoot>

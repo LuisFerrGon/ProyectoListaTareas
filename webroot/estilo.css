@@ -1,5 +1,7 @@
 :root{
     --blanco: #fff;
+    --rojoError: #ff3c10;
+    --amarilloObligatorio: #fdeba9;
     --verdeClaro: #5efc8d;
     --celeste: #8ef9f3;
     --indigoClaro: #93bedf;
@@ -8,10 +10,68 @@
     --negro: #000;
 }
 *{
-    margin: 5px;
+    margin: 5px 0px;
     padding: 0px;
 }
 a:link, a:visited, a:hover, a:active{
     color: var(--indigo);
     text-decoration: none;
+}
+body{
+    position: relative;
+    header{
+        display: flex;
+        justify-content: space-evenly;
+        h1{
+            text-align: center;
+            color: var(--indigoClaro);
+        }
+        input{
+            color: var(--blanco);
+            background-color: var(--indigo);
+            border: 0;
+            border-radius: 5px;
+            padding: 5px;
+        }
+    }
+    main{
+        div.formulario{
+            h2{
+                text-align: center;
+                color: var(--celeste);
+            }
+            table{
+                margin: 5px auto;
+                border: 0.5px solid var(--gris);
+                border-radius: 5px;
+                background-color: var(--grisClaro);
+                width: fit-content;
+                td.error{
+                    color: var(--rojoError);
+                }
+                td>input.obligatorio{
+                    background-color: var(--amarilloObligatorio);
+                }
+                tfoot{
+                    input{
+                        color: var(--blanco);
+                        background-color: var(--indigoClaro);
+                        border: 0;
+                        border-radius: 5px;
+                        padding: 5px;
+                    }
+                }
+            }
+        }
+    }
+    footer{
+        margin: 0;
+        background-color: var(--indigo);
+        display: flex;
+        justify-content: space-evenly;
+        width: 100%;
+        p{
+            color: var(--blanco);
+        }
+    }
 }

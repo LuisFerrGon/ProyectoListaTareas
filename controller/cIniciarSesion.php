@@ -23,6 +23,12 @@
         header('Location: index.php');
         exit();
     }
+    if(isset($_REQUEST['registro'])){
+        $_SESSION['paginaEnCurso']='registro';
+        $_SESSION['paginaAnterior']='login';
+        header('Location: index.php');
+        exit();
+    }
     if(isset($_REQUEST['login'])){
         $aErrores['codigo']=validacionFormularios::comprobarAlfabetico($_REQUEST['codigo'], MAX_CODIGO, MIN_CODIGO, OBLIGATORIO);
         $aErrores['contrasena']=validacionFormularios::validarPassword($_REQUEST['contrasena'], MAX_CONTRASENA, MIN_CONTRASENA, MEDIO, OBLIGATORIO);

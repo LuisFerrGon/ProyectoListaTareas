@@ -15,7 +15,7 @@
     <div></div>
 </header>
 <main>
-    <div id="formularioLogin">
+    <div id="formularioLogin" class="formulario">
         <h2>Iniciar sesión</h2>
         <form action="<?php echo $_SERVER['PHP_SELF']?>" method="post">
             <table>
@@ -39,6 +39,9 @@
                 </tbody>
                 <tfoot>
                     <tr>
+                        <td>
+                            <input type="submit" value="Registro" id="registro" name="registro">
+                        </td>
                         <td>
                             <input type="submit" value="Iniciar sesión" id="login" name="login">
                         </td>

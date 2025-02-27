@@ -5,7 +5,7 @@
      * Clase para utilizar objetos Tarea
      * 
      * @author Luis Ferreras González
-     * @version 1.0.0 Fecha última modificación: 26/02/2025
+     * @version 1.0.0 Fecha última modificación: 27/02/2025
      * @since 1.0.0
      */
     class TareaPDO{
@@ -81,14 +81,65 @@
                 return null;
             }
         }
-        public static function crearTarea($codigoUsuario, $descripcion){
-
+        /**
+         * Función crearTarea
+         * 
+         * Función para crear una tarea dados el código de usuario y su descripción
+         * 
+         * @param string $codigoUsuario Código deusuario de la tarea a añadir
+         * @param string $descripcion Descripción de la tarea a añadir
+         * @author Luis Ferreras González
+         * @version 1.0.0 Fecha última modificación: 27/02/2025
+         * @since 1.0.0
+         */
+        public static function crearTarea(string $codigoUsuario, string $descripcion){
+            $consulta=<<<SQL
+                INSERT INTO Tareas
+                    (codigoUsuario, descripcion)
+                VALUES
+                    ('{$codigoUsuario}', '{$descripcion}');
+            SQL;
+            DBPDO::ejecutarConsulta($consulta);
         }
-        public static function borrarTarea($codigoUsuario, $codigoTarea){
-
+        /**
+         * Función borrarTarea
+         * 
+         * Función para borrar una tarea dados sus códigos
+         * 
+         * @param string $codigoUsuario Código del usuario al que pertenece la tarea
+         * @param int $codigoTarea  Código de la tarea
+         * @author Luis Ferreras González
+         * @version 1.0.0 Fecha última modificación: 27/02/2025
+         * @since 1.0.0
+         */
+        public static function borrarTarea(string $codigoUsuario, int $codigoTarea){
+            $consulta=<<<SQL
+                DELETE FROM Tareas
+                WHERE codigoUsuario='{$codigoUsuario}'
+                AND codigoTarea={$codigoTarea};
+            SQL;
+            DBPDO::ejecutarConsulta($consulta);
         }
-        public static function editarTarea($codigoUsuario, $codigoTarea, $descripcion){
-            
+        /**
+         * Función editarTarea
+         * 
+         * Función para editar una tarea dados sus códigos y la nueva descripcion
+         * 
+         * @param string $codigoUsuario Código del usuario al que pertenece la tarea
+         * @param int $codigoTarea  Código de la tarea
+         * @param string $descripcion Nueva descripción de la tarea
+         * @author Luis Ferreras González
+         * @version 1.0.0 Fecha última modificación: 27/02/2025
+         * @since 1.0.0
+         */
+        public static function editarTarea(string $codigoUsuario, int $codigoTarea, string $descripcion){
+            $consulta=<<<SQL
+                UPDATE Tareas SET
+                    descripcion='{$descripcion}'
+                WHERE codigoUsuario='{$codigoUsuario}'
+                AND codigoTarea={$codigoTarea};
+            SQL;
+            DBPDO::ejecutarConsulta($consulta);
         }
         /**
          * Función cambiarEstado
@@ -98,25 +149,23 @@
          * @param string $codigoUsuario Código del usuario al que pertenece la tarea
          * @param int $codigoTarea  Código de la tarea
          * @author Luis Ferreras González
-         * @version 1.0.0 Fecha última modificación: 25/02/2025
+         * @version 1.0.0 Fecha última modificación: 27/02/2025
          * @since 1.0.0
          */
         public static function cambiarEstado(string $codigoUsuario, int $codigoTarea){
-            if((TareaPDO::buscarTareaPorCodigo($codigoUsuario, $codigoTarea))->fechaCompletado==null){
+            if((TareaPDO::buscarTareaPorCodigo($codigoUsuario, $codigoTarea))->getFechaCompletado()==null){
                 $consulta=<<<SQL
                     UPDATE Tareas SET
                         fechaCompletado=CURRENT_TIMESTAMP()
                     WHERE codigoUsuario='{$codigoUsuario}'
-                    AND codigoTarea={$codigoTarea}
-                    AND ISNULL(fechaCompletado);
+                    AND codigoTarea={$codigoTarea};
                 SQL;
             }else{
                 $consulta=<<<SQL
                     UPDATE Tareas SET
                         fechaCompletado=NULL
                     WHERE codigoUsuario='{$codigoUsuario}'
-                    AND codigoTarea={$codigoTarea}
-                    AND fechaCompletado IS NOT NULL;
+                    AND codigoTarea={$codigoTarea};
                 SQL;
             }
             DBPDO::ejecutarConsulta($consulta);

@@ -1,7 +1,7 @@
 <?php
     /**
      * @author Luis Ferreras González
-     * @version 1.0.0 Fecha última modificación: 26/02/2025
+     * @version 1.0.0 Fecha última modificación: 27/02/2025
      * @since 1.0.0
      */
     require_once 'model/tarea.php';
@@ -13,7 +13,7 @@
         'iniciarSesion'=>'controller/cIniciarSesion.php',
         'registro'=>'controller/cRegistro.php',
         'inicioPrivado'=>'controller/cInicioPrivado.php',
-        'nuevaTarea'=>'controller/cNuevaTarea.php',
+        'registro'=>'controller/cRegistro.php',
         'mostrarTarea'=>'controller/cMostrarTarea.php',
         'editarTarea'=>'controller/cEditarTarea.php',
         'borrarTarea'=>'controller/cBorrarTarea.php',
@@ -26,7 +26,7 @@
         'iniciarSesion'=>'view/vIniciarSesion.php',
         'registro'=>'view/vRegistro.php',
         'inicioPrivado'=>'view/vInicioPrivado.php',
-        'nuevaTarea'=>'view/vNuevaTarea.php',
+        'registro'=>'view/vRegistro.php',
         'mostrarTarea'=>'view/vMostrarTarea.php',
         'editarTarea'=>'view/vEditarTarea.php',
         'borrarTarea'=>'view/vBorrarTarea.php',

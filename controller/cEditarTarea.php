@@ -1,16 +1,16 @@
 <?php
     /**
      * @author Luis Ferreras González
-     * @version 1.0.0 Fecha última modificación: 25/02/2025
+     * @version 1.0.0 Fecha última modificación: 27/02/2025
      * @since 1.0.0
      */
-    require_once 'core/lValidacionFormularios.php';
+    require_once 'core/lValidacionFormulario.php';
     require_once 'config/confDB.php';
     $oUsuarioActivo=$_SESSION['usuarioActivo'];
     $tareaEnCurso=$_SESSION['tareaEnCurso'];
     if(isset($_REQUEST['volver'])){
-        $_SESSION['paginaEnCurso']=$_SESSION['paginaAnterior'];
-        $_SESSION['paginaAnterior']='inicioPrivado';
+        $_SESSION['paginaEnCurso']='inicioPrivado';
+        $_SESSION['paginaAnterior']='editarTarea';
         header('Location: index.php');
         exit();
     }
@@ -22,7 +22,7 @@
     ];
     $entradaOK=true;
     if(isset($_REQUEST['editar'])){
-        $aErrores['descripcionTarea']= validacionFormularios::comprobarAlfabetico($_REQUEST['descripcionTarea'], MAX_DESC, MIN_DESC, OBLIGATORIO);
+        $aErrores['descripcionTarea']= validacionFormularios::comprobarAlfaNumerico($_REQUEST['descripcionTarea'], MAX_DESC, MIN_DESC, OBLIGATORIO);
         foreach($aErrores as $value){
             if($value!=null){
                 $entradaOK=false;
@@ -32,11 +32,11 @@
         $entradaOK=false;
     }
     if($entradaOK){
-        TareaPDO::editarTarea($oUsuarioActivo->codigo, $tareaEnCurso->getCodigo(), $_REQUEST['descripcionTarea'], $_REQUEST['volumenTarea']);
+        TareaPDO::editarTarea($oUsuarioActivo->getCodigo(), $tareaEnCurso->getCodigo(), $_REQUEST['descripcionTarea'], $_REQUEST['volumenTarea']);
         $_SESSION['paginaEnCurso']='inicioPrivado';
         $_SESSION['paginaAnterior']='editarTarea';
         header('Location: index.php');
         exit();
     }
-    require_once $aVistas['layout'];
+    require_once $aView['layout'];
 ?>

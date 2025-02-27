@@ -1,7 +1,7 @@
 <?php
     /**
      * @author Luis Ferreras González
-     * @version 1.0.0 Fecha última modificación: 25/02/2025
+     * @version 1.0.0 Fecha última modificación: 27/02/2025
      * @since 1.0.0
      */
 ?>
@@ -15,7 +15,7 @@
     <body>
         <?php require_once $aView[$_SESSION['paginaEnCurso']];?>
         <footer>
-            <p>Última revisión: <?php echo date_format(new DateTime("2025/02/25"), "d/m/Y")?></p>
+            <p>Última revisión: <?php echo date_format(new DateTime("2025/02/27"), "d/m/Y")?></p>
         </footer>
     </body>
 </html>
