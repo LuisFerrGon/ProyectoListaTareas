@@ -1,7 +1,7 @@
 <?php
     /**
      * @author Luis Ferreras González
-     * @version 1.0.0 Fecha última modificación: 25/02/2025
+     * @version 1.0.0 Fecha última modificación: 05/03/2025
      * @since 1.0.0
      */
 ?>
@@ -40,10 +40,10 @@
                 <tfoot>
                     <tr>
                         <td>
-                            <input type="submit" value="Registro" id="registro" name="registro">
+                            <input type="submit" value="Iniciar sesión" id="login" name="login">
                         </td>
                         <td>
-                            <input type="submit" value="Iniciar sesión" id="login" name="login">
+                            <input type="submit" value="Registro" id="registro" name="registro">
                         </td>
                     </tr>
                 </tfoot>

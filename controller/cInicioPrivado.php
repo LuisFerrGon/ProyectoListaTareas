@@ -1,7 +1,7 @@
 <?php
     /**
      * @author Luis Ferreras González
-     * @version 1.0.0 Fecha última modificación: 27/02/2025
+     * @version 1.0.0 Fecha última modificación: 05/03/2025
      * @since 1.0.0
      */
     require_once 'model/tarea.php';
@@ -53,6 +53,26 @@
         header('Location: index.php');
         exit();
     }
+    if(isset($_REQUEST['primeraPag'])){
+        $_SESSION['paginaPaginacion']=1;
+        header('Location: index.php');
+        exit();
+    }
+    if(isset($_REQUEST['ultimaPag'])){
+        $_SESSION['paginaPaginacion']='max';
+        header('Location: index.php');
+        exit();
+    }
+    if(isset($_REQUEST['anteriorPag']) && $_SESSION['paginaPaginacion']>1){
+        $_SESSION['paginaPaginacion']--;
+        header('Location: index.php');
+        exit();
+    }
+    if(isset($_REQUEST['siguientePag'])){
+        $_SESSION['paginaPaginacion']++;
+        header('Location: index.php');
+        exit();
+    }
     if(isset($_REQUEST['descripcionTarea'])){
         $_SESSION['criterioBusqueda']['descripcionTarea']=$_REQUEST['descripcionTarea'];
     }
@@ -65,9 +85,24 @@
     if(!isset($_SESSION['criterioBusqueda']['estado'])){
         $_SESSION['criterioBusqueda']['estado']='00';
     }
+    if(!isset($_SESSION['paginaPaginacion'])){
+        $_SESSION['paginaPaginacion']=1;
+    }
     $aCondicionesBusqueda=[
         'descripcionTarea' => "%".$_SESSION['criterioBusqueda']['descripcionTarea']."%",
         'estado' => $_SESSION['criterioBusqueda']['estado']
     ];
     $aTareas=TareaPDO::buscarTarea($oUsuarioActivo->getCodigo(), $aCondicionesBusqueda);
+    $paginacionUltimo=ceil(sizeof($aTareas)/5);
+    if($paginacionUltimo==0){$paginacionUltimo=1;}
+    $paginacionMostrar=$_SESSION['paginaPaginacion'];
+    if($paginacionUltimo<$paginacionMostrar || $paginacionMostrar=='max'){
+        $paginacionMostrar=$paginacionUltimo;
+        $_SESSION['paginaPaginacion']=$paginacionMostrar;
+    }
+    if(count($aTareas)!=0){
+        $aTareasMostrar=array_chunk($aTareas, 5, true)[$paginacionMostrar-1];
+    }else{
+        $aTareasMostrar=null;
+    }
 ?>

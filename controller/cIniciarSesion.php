@@ -1,7 +1,7 @@
 <?php
     /**
      * @author Luis Ferreras González
-     * @version 1.0.0 Fecha última modificación: 26/02/2025
+     * @version 1.0.0 Fecha última modificación: 05/03/2025
      * @since 1.0.0
      */
     require_once 'core/lValidacionFormulario.php';
@@ -19,13 +19,13 @@
     ];
     if(isset($_REQUEST['volver'])){
         $_SESSION['paginaEnCurso']='inicioPublico';
-        $_SESSION['paginaAnterior']='login';
+        $_SESSION['paginaAnterior']='iniciarSesion';
         header('Location: index.php');
         exit();
     }
     if(isset($_REQUEST['registro'])){
         $_SESSION['paginaEnCurso']='registro';
-        $_SESSION['paginaAnterior']='login';
+        $_SESSION['paginaAnterior']='iniciarSesion';
         header('Location: index.php');
         exit();
     }

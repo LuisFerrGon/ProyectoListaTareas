@@ -1,7 +1,7 @@
 <?php
     /**
      * @author Luis Ferreras González
-     * @version 1.0.0 Fecha última modificación: 27/02/2025
+     * @version 1.0.0 Fecha última modificación: 05/03/2025
      * @since 1.0.0
      */
 ?>
@@ -21,8 +21,6 @@
                 <tr>
                     <td>
                         <label for="descripcionTarea">Descripción:</label>
-                    </td>
-                    <td>
                         <input type="text" id="descripcionTarea" name="descripcionTarea" maxlength="255" value="<?php echo $_SESSION['criterioBusqueda']['descripcionTarea'];?>">
                     </td>
                     <td>
@@ -42,7 +40,9 @@
                 </tr>
             </tfoot>
         </table>
-        <table id="tablaTareas">
+    </form>
+    <form action="post" id="tablaTareas">
+        <table>
             <thead>
                 <tr>
                     <th>Tarea</th>
@@ -55,11 +55,11 @@
             <tbody>
                 <?php
                     if(count($aTareas)==0){
-                        echo "<tr colspan='5'"
-                            . "<td>No hay tareas que se adhieran a la busqueda</td>"
+                        echo "<tr>"
+                            . "<td colspan='5'>No hay tareas que se adhieran a la busqueda</td>"
                         . "</tr>";
                     }else{
-                        foreach($aTareas as $oTarea){
+                        foreach($aTareasMostrar as $oTarea){
                             $codigo=$oTarea->getCodigo();
                             $descripcion=$oTarea->getDescripcion();
                             $fechaCreacion=$oTarea->getFechaCreacion();
@@ -68,12 +68,20 @@
                                 ?"&#9745;"#Caja sin marcar
                                 :"&#9744;"#Caja marcada
                             ;
-                            echo "<tr class='".$estado."'>"
-                                . "<td>".$descripcion."</td>"
-                                . "<td><input type='submit' id='cambiar(".$codigo.")' name='cambiar(".$codigo.")' value='".$estado."'></td>"
-                                . "<td><input type='submit' id='mostrar(".$codigo.")' name='mostrar(".$codigo.")' value='&#128065;'></td>"#Ojo
-                                . "<td><input type='submit' id='editar(".$codigo.")' name='editar(".$codigo.")' value='&#128393;'></td>"#Lapiz
-                                . "<td><input type='submit' id='borrar(".$codigo.")' name='borrar(".$codigo.")' value='&#128465;'></td>"#Cubo
+                            switch($estado){
+                                case '&#9745;':
+                                    $estadoNombre="completo";
+                                    break;
+                                case '&#9744;':
+                                    $estadoNombre="incompleto";
+                                    break;
+                            }
+                            echo "<tr class='".$estadoNombre."'>"
+                                . "<td class='descripcion'>".$descripcion."</td>"
+                                . "<td class='accion'><input type='submit' id='cambiar(".$codigo.")' name='cambiar(".$codigo.")' value='".$estado."'></td>"
+                                . "<td class='accion'><input type='submit' id='mostrar(".$codigo.")' name='mostrar(".$codigo.")' value='&#128065;'></td>"#Ojo
+                                . "<td class='accion'><input type='submit' id='editar(".$codigo.")' name='editar(".$codigo.")' value='&#128393;'></td>"#Lapiz
+                                . "<td class='accion'><input type='submit' id='borrar(".$codigo.")' name='borrar(".$codigo.")' value='&#128465;'></td>"#Cubo
                             . "</tr>";
                         }
                     }
@@ -81,10 +89,19 @@
             </tbody>
             <tfoot>
                 <tr>
+                    <td colspan="5" id="paginacion">
+                        <input type="submit" id="primeraPag" name="primeraPag" value="&lt;&lt;">
+                        <input type="submit" id="anteriorPag" name="anteriorPag" value="&lt;">
+                        <?php echo $_SESSION['paginaPaginacion']."/".$paginacionUltimo;?>
+                        <input type="submit" id="siguientePag" name="siguientePag" value="&gt;">
+                        <input type="submit" id="ultimaPag" name="ultimaPag" value="&gt;&gt;">
+                    </td>
+                </tr>
+                <tr>
                     <td colspan="5">
                         <label for="nuevaTarea">Nueva tarea:</label>
                         <input type="text" id="nuevaTarea" name="nuevaTarea" minlength="1" maxlength="255">
-                        <input type="submit" name="crear" value="Crear">
+                        <input type="submit" id="crear" name="crear" value="Crear">
                     </td>
                 </tr>
             </tfoot>

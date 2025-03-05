@@ -1,7 +1,7 @@
 <?php
     /**
      * @author Luis Ferreras González
-     * @version 1.0.0 Fecha última modificación: 27/02/2025
+     * @version 1.0.0 Fecha última modificación: 05/03/2025
      * @since 1.0.0
      */
     require_once 'core/lValidacionFormulario.php';
@@ -28,15 +28,13 @@
                 $entradaOK=false;
             }
         }
-    }else{
-        $entradaOK=false;
-    }
-    if($entradaOK){
-        TareaPDO::editarTarea($oUsuarioActivo->getCodigo(), $tareaEnCurso->getCodigo(), $_REQUEST['descripcionTarea'], $_REQUEST['volumenTarea']);
-        $_SESSION['paginaEnCurso']='inicioPrivado';
-        $_SESSION['paginaAnterior']='editarTarea';
-        header('Location: index.php');
-        exit();
+        if($entradaOK){
+            TareaPDO::editarTarea($oUsuarioActivo->getCodigo(), $tareaEnCurso->getCodigo(), $_REQUEST['descripcionTarea'], $_REQUEST['volumenTarea']);
+            $_SESSION['paginaEnCurso']='inicioPrivado';
+            $_SESSION['paginaAnterior']='editarTarea';
+            header('Location: index.php');
+            exit();
+        }
     }
     require_once $aView['layout'];
 ?>

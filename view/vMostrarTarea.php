@@ -1,7 +1,7 @@
 <?php
     /**
      * @author Luis Ferreras González
-     * @version 1.0.0 Fecha última modificación: 27/02/2025
+     * @version 1.0.0 Fecha última modificación: 05/03/2025
      * @since 1.0.0
      */
 ?>
@@ -15,7 +15,7 @@
     <div></div>
 </header>
 <main>
-    <form name="modificarTarea" id="modificarTarea" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" novalidate>
+    <form class="tarea" name="mostrarTarea" id="mostrarTarea" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" novalidate>
         <table>
             <tbody>
                 <tr>
@@ -23,7 +23,7 @@
                         <label for="descripcionTarea">Descripción:</label>
                     </td>
                     <td>
-                        <input type="text" id="descripcionTarea" name="descripcionTarea" value="<?php echo ($tareaEnCurso->getDescripcion());?>" class="obligatorio" disabled>
+                        <input type="text" id="descripcionTarea" name="descripcionTarea" value="<?php echo ($tareaEnCurso->getDescripcion());?>" disabled>
                     </td>
                 </tr>
                 <tr>
@@ -36,10 +36,10 @@
                 </tr>
                 <tr>
                     <td>
-                        <label for="fechaBajaTarea">Fecha de baja:</label>
+                        <label for="fechaCompletacionTarea">Fecha de completacion:</label>
                     </td>
                     <td>
-                        <input type="date" id="fechaBajaTarea" name="fechaBajaTarea" value="<?php
+                        <input type="date" id="fechaCompletacionTarea" name="fechaCompletacionTarea" value="<?php
                             if($tareaEnCurso->getFechaCompletado()!=null){
                                 echo(date('Y-m-d', strtotime($tareaEnCurso->getFechaCompletado())));
                             }

@@ -3,10 +3,13 @@
     --rojoError: #ff3c10;
     --amarilloObligatorio: #fdeba9;
     --verdeClaro: #5efc8d;
+    --verde: #40dc6f;
     --celeste: #8ef9f3;
     --indigoClaro: #93bedf;
     --indigo: #8377d1;
     --ciruela: #6d5a72;
+    --gris: #d3d3d3;
+    --grisClaro: #f0f0f5;
     --negro: #000;
 }
 *{
@@ -18,7 +21,6 @@ a:link, a:visited, a:hover, a:active{
     text-decoration: none;
 }
 body{
-    position: relative;
     header{
         display: flex;
         justify-content: space-evenly;
@@ -35,6 +37,12 @@ body{
         }
     }
     main{
+        td.error{
+            color: var(--rojoError);
+        }
+        td>input.obligatorio{
+            background-color: var(--amarilloObligatorio);
+        }
         div.formulario{
             h2{
                 text-align: center;
@@ -46,12 +54,6 @@ body{
                 border-radius: 5px;
                 background-color: var(--grisClaro);
                 width: fit-content;
-                td.error{
-                    color: var(--rojoError);
-                }
-                td>input.obligatorio{
-                    background-color: var(--amarilloObligatorio);
-                }
                 tfoot{
                     input{
                         color: var(--blanco);
@@ -63,12 +65,108 @@ body{
                 }
             }
         }
+        form#formularioBusqueda, form#tablaTareas{
+            table{
+                margin: 10px;
+                width: calc(100% - 20px);
+                border-spacing: 0;
+            }
+        }
+        form#formularioBusqueda{
+            table{
+                background-color: var(--grisClaro);
+                border: 0.5px solid var(--gris);
+                border-radius: 5px;
+                td{
+                    padding: 2.5px;
+                }
+            }
+        }
+        form#tablaTareas{
+            table{
+                display: table;
+                thead{
+                    tr{
+                        background-color: var(--indigoClaro);
+                        color: var(--blanco);
+                    }
+                    th:first-child{
+                        width: 60%;
+                    }
+                    th{
+                        width: 10%;
+                    }
+                }
+                tbody{
+                    tr:nth-child(odd){
+                        background-color: var(--grisClaro);
+                    }
+                    tr:nth-child(even){
+                        background-color: var(--gris);
+                    }
+                    tr.completo:nth-child(odd){
+                        background-color: var(--verdeClaro);
+                    }
+                    tr.completo:nth-child(even){
+                        background-color: var(--verde);
+                    }
+                    td.descripcion{
+                        padding-left: 5px;
+                    }
+                    td.accion{
+                        text-align: center;
+                        input{
+                            border: 0;
+                            background-color: transparent;
+                            cursor: pointer;
+                        }
+                    }
+                }
+                tfoot{
+                    td{
+                        text-align: center;
+                        input#crear{
+                            border: 0;
+                            border-radius: 5px;
+                            background-color: var(--indigoClaro);
+                            font-weight: bold;
+                            color: var(--blanco);
+                            padding: 2.5px;
+                        }
+                    }
+                    td#paginacion{
+                        input{
+                            border: 0;
+                            background-color: transparent;
+                        }
+                    }
+                }
+            }
+        }
+        form.tarea{
+            table{
+                margin: 0 auto;
+                background-color: var(--grisClaro);
+                border: 0.5px solid var(--gris);
+                border-radius: 5px;
+                td{
+                    padding: 2.5px;
+                }
+            }
+        }
+        div#formularioRegistro{
+            ul#caracPass{
+                list-style: none;
+            }
+        }
     }
     footer{
         margin: 0;
         background-color: var(--indigo);
         display: flex;
         justify-content: space-evenly;
+        position: absolute;
+        bottom: 0;
         width: 100%;
         p{
             color: var(--blanco);

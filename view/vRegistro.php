@@ -1,7 +1,7 @@
 <?php
     /**
      * @author Luis Ferreras González
-     * @version 1.0.0 Fecha última modificación: 27/02/2025
+     * @version 1.0.0 Fecha última modificación: 05/03/2025
      * @since 1.0.0
      */
 ?>
@@ -65,6 +65,17 @@
                     <tr>
                         <td>
                             <input type="submit" value="Registrarse" id="regstro" name="registro">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <ul id="caracPass">
+                                <li>El código de usuario debe tener entre 4 y 8 de largo.</li>
+                                <li>El código de usuario solo admite letras y diferencia entre mayúsculas y minúsculas.</li>
+                                <li>La contraseña de usuario debe tener entre 4 y 8 de largo.</li>
+                                <li>La contraseña de usuario admite letras y números.</li>
+                                <li>El nombre de usuario debe tener entre 1 y 255 de largo.</li>
+                            </ul>
                         </td>
                     </tr>
                 </tfoot>
